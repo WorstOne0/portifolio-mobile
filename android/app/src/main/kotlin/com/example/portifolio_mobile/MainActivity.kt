@@ -1,4 +1,4 @@
-package com.example.portifolio_mobile
+package portifolio.kuuhaku.dev
 
 import io.flutter.embedding.android.FlutterActivity
 
