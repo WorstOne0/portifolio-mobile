@@ -1,10 +1,10 @@
+// Flutter Packages
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:portifolio_mobile/styles/app_theme.dart';
+// Styles
+import '/styles/app_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,14 +23,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _fadeOut = AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
 
     // Begin fade-out after the entrance animations settle
-    Future.delayed(const Duration(milliseconds: 2100), () {
-      if (mounted) _fadeOut.forward();
-    });
-
+    Future.delayed(const Duration(milliseconds: 2100), () => _fadeOut.forward());
     // Navigate when fade-out is complete
-    Future.delayed(const Duration(milliseconds: 2700), () {
-      if (mounted) context.go('/');
-    });
+    Future.delayed(const Duration(milliseconds: 2700), () => context.go('/'));
   }
 
   @override
@@ -52,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _RocketGlow(),
+                Image.asset('assets/images/simplified_logo_nobg.png', width: 130, height: 130, fit: BoxFit.contain),
 
                 const SizedBox(height: 10),
 
@@ -72,7 +67,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 const SizedBox(height: 8),
 
                 Text(
-                      '< PORTFOLIO />',
+                      '<PORTFOLIO />',
                       style: GoogleFonts.firaCode(color: AppColors.primaryLight, fontSize: 14, letterSpacing: 2),
                     )
                     .animate(delay: 750.ms)
@@ -83,45 +78,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           ],
         ),
       ),
-    );
-  }
-}
-
-class _RocketGlow extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Outer glow ring — pulses
-        Container(
-              width: 110,
-              height: 110,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(colors: [AppColors.primaryLight.withValues(alpha: 0.22), Colors.transparent]),
-              ),
-            )
-            .animate(onPlay: (c) => c.repeat(reverse: true))
-            .scaleXY(begin: 0.85, end: 1.15, duration: 1200.ms, curve: Curves.easeInOut)
-            .fadeIn(duration: 300.ms),
-
-        // Inner glow
-        Container(
-              width: 72,
-              height: 72,
-              decoration: BoxDecoration(shape: BoxShape.circle, color: AppColors.primary.withValues(alpha: 0.18)),
-            )
-            .animate(onPlay: (c) => c.repeat(reverse: true))
-            .scaleXY(begin: 0.9, end: 1.1, duration: 900.ms, curve: Curves.easeInOut),
-
-        // Rocket icon
-        const FaIcon(
-          FontAwesomeIcons.rocket,
-          color: AppColors.primaryLight,
-          size: 44,
-        ).animate().scaleXY(begin: 0.2, end: 1.0, duration: 600.ms, curve: Curves.elasticOut).fadeIn(duration: 300.ms),
-      ],
     );
   }
 }

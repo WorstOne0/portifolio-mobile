@@ -25,10 +25,10 @@ dev_dependencies:
 
 flutter_icons:
   android: true
-  image_path_android: "assets/images/logo2.png"
+  image_path_android: "assets/images/ic_launcher.png"
   adaptive_icon_background: "#0B5ECD"
   ios: true
-  image_path_ios: "assets/images/logo2.png"
+  image_path_ios: "assets/images/ic_launcher.png"
   remove_alpha_ios: true
 
 flutter:
